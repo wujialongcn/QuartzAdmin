@@ -1,0 +1,7 @@
+﻿@if (Request.IsAuthenticated){
+    <p>Welcome <b>@Html.Encode(Page.User.Identity.Name)</b>!</p>
+    <p>[@Html.ActionLink("Log Off", "LogOff", "Account")]</p>
+}else{
+    <p>[@Html.ActionLink("Log On", "LogOn", "Account")]</p>
+}
+

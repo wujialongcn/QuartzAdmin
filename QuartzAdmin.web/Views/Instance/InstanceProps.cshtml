@@ -1,0 +1,80 @@
+
+@model QuartzAdmin.web.Models.InstanceModel
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#addRowsButton").click(function () {
+
+            var lastKeyField = $('#instancePropsTable tr:last td:first input:first');
+            var lastIndex = lastKeyField.attr('id').split('-')[1];
+            var nextIndex = parseInt(lastIndex) + 1;
+            //alert(nextIndex);
+            $('#instancePropsTable tr:last').after('<tr><td><input type="text" id="InstancePropertyKey-' + nextIndex + '" name="InstancePropertyKey-' + nextIndex + '"/></td><td><input type="text" id="InstancePropertyValue-' + nextIndex + '" name="InstancePropertyValue-' + nextIndex + '" /> <a href="javascript:void(0);" class="delRowBtn input_prop">x</a></td></tr>');
+            return false;
+
+        });
+
+        $(".delRowBtn").live("click", function () {
+            var parentRow = $(this).closest("tr");
+            parentRow.remove();
+            return false;
+        });
+
+    });
+</script>
+<style  type="text/css">
+    td * {
+        width:348px;
+    }
+</style>
+
+<label>Quartz Properties <a href="#" id="addRowsButton" title="Add row">+</a></label>
+
+<table id="instancePropsTable">
+    <tr>
+        <th width="350">
+            Prop Name
+        </th>
+        <th width="350">
+            Prop Value
+        </th>
+    </tr>
+    @if (Model == null || Model.InstanceProperties == null || Model.InstanceProperties.Count == 0)
+    {
+
+        <tr>
+            <td>@Html.TextBox("InstancePropertyKey-1", "quartz.scheduler.instanceName")</td>
+            <td>@Html.TextBox("InstancePropertyValue-1", "SampleQuartzScheduler", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBox("InstancePropertyKey-2", "quartz.threadPool.type", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+            <td>@Html.TextBox("InstancePropertyValue-2", "Quartz.Simpl.SimpleThreadPool, Quartz", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBox("InstancePropertyKey-3", "quartz.scheduler.proxy", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+            <td>@Html.TextBox("InstancePropertyValue-3", "true", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBox("InstancePropertyKey-4", "quartz.scheduler.proxy.address", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+            <td>@Html.TextBox("InstancePropertyValue-4", "tcp://localhost:555/QuartzScheduler", new Dictionary<String, Object>() { { "class", "input_prop" } })</td>
+        </tr>
+    }
+    else
+    {
+        int cnt = 1;
+        foreach (QuartzAdmin.web.Models.InstancePropertyModel prop in Model.InstanceProperties)
+        {
+            <tr>
+                <td>
+                    @Html.TextBox(string.Format("InstancePropertyKey-{0}", cnt), prop.PropertyName, new Dictionary<String, Object>() { { "class", "input_prop" } })
+                </td>
+                <td>
+                    @Html.TextBox(string.Format("InstancePropertyValue-{0}", cnt), prop.PropertyValue, new Dictionary<String, Object>() { { "class", "input_prop" } })
+                    <a href="#" class="delRowBtn">x</a>
+                </td>
+            </tr>
+
+            cnt++;
+        }
+    }
+</table>
+

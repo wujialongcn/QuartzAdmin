@@ -1,0 +1,23 @@
+@{
+    ViewBag.Title = "Edit";
+}
+@model QuartzAdmin.web.Models.InstanceModel
+
+
+<h2>
+    Edit @Model.InstanceName
+</h2>
+@Html.ValidationSummary("Edit was unsuccessful. Please correct the errors and try again.")
+@using (Html.BeginForm()){
+<fieldset>
+    @{
+        Html.RenderPartial("InstanceProps", Model);
+    }
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+</fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</div> 

@@ -1,0 +1,34 @@
+    @{
+        ViewBag.Title = "Details";
+    }
+    @model QuartzAdmin.web.Models.InstanceModel
+
+
+
+<h2>@Model.InstanceName Details</h2>
+
+<fieldset>
+    <p>
+        InstanceID:
+        @Html.Encode(Model.InstanceID)
+    </p>
+    <p>
+        InstanceName:
+        @Html.Encode(Model.InstanceName)
+    </p>
+    <p>
+        Properties:
+        <ul>
+            @foreach (QuartzAdmin.web.Models.InstancePropertyModel prop in Model.InstanceProperties)
+            {
+
+            <li>@prop.PropertyName - @prop.PropertyValue</li>
+            }
+        </ul>
+    </p>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InstanceName }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.InstanceName }) |
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>

@@ -1,0 +1,6 @@
+@{
+    ViewBag.Title = "CurrentStatus";
+}
+ 
+    <h2>Current Status for @ViewData["groupName"]</h2>
+    @{Html.RenderPartial("/Views/Group/CurrentStatus.cshtml", ViewData);    }

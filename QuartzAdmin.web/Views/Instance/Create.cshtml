@@ -1,0 +1,31 @@
+    @{
+        ViewBag.Title = "Create";
+    }
+    @model QuartzAdmin.web.Models.InstanceModel 
+
+        <h2>Create new connection instance</h2>
+
+        @{Html.ValidationSummary("Create was unsuccessful. Please correct the errors and try again."); }
+
+        @using(Html.BeginForm()){ 
+        <fieldset>
+            <p>
+                <label for="InstanceName">Name:</label>
+                @Html.TextBox("InstanceName")
+                @Html.ValidationMessage("InstanceName", "*")
+            </p>
+            <p>
+                @Html.Partial("InstanceProps")
+            </p>
+            <p>
+            </p>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+ 

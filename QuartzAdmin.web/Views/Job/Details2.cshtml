@@ -1,0 +1,45 @@
+ 
+
+    @{
+        ViewBag.Title = "Details2";
+    }
+    @model Quartz.IJobDetail
+ 
+
+        <h2>Details2</h2>
+
+        <fieldset>
+            <legend>Fields</legend>
+            <p>
+                Name:
+                @Html.Encode(Model.Key.Name)
+            </p>
+            <p>
+                Group:
+                @Html.Encode(Model.Key.Group)
+            </p>
+            <p>
+                FullName:
+                @Html.Encode(Model.JobType.FullName)
+            </p>
+            <p>
+                Description:
+                @Html.Encode(Model.Description)
+            </p>
+            <p>
+                RequestsRecovery:
+                @Html.Encode(Model.RequestsRecovery)
+            </p>
+            <p>
+                PersistJobDataAfterExecution:
+                @Html.Encode(Model.PersistJobDataAfterExecution)
+            </p>
+            <p>
+                Durable:
+                @Html.Encode(Model.Durable)
+            </p> 
+        </fieldset>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p> 

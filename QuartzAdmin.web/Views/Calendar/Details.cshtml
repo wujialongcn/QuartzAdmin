@@ -1,0 +1,23 @@
+@{
+    ViewBag.Title = "Details";
+}
+<h2>Details</h2>
+
+    <fieldset>
+        <legend>Next 30 valid days</legend>
+        @{DateTime dtTemp = DateTime.Now;
+            for (int i = 0; i < 31; i++)
+            {
+                dtTemp = Model.GetNextIncludedTimeUtc(dtTemp);
+
+        <p>
+            <@Html.Encode(dtTemp.ToLocalTime())
+        </p>
+
+            }
+        }
+    </fieldset>
+    <p>
+        <@Html.ActionLink("Back to List", "Index")
+    </p>
+ 

@@ -1,0 +1,15 @@
+@{
+    ViewBag.Title = "Delete";
+}
+@model QuartzAdmin.web.Models.InstanceModel
+
+
+@using (Html.BeginForm())
+{
+    <h2>Are you sure you want to delete [@Html.Encode(Model.InstanceName)]?</h2>
+
+    <p>
+        <input type="submit" value="Delete" />
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+} 
